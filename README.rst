@@ -14,15 +14,15 @@ See the `AAAI
 
 
 
-.. image:: img/cade.png
+.. image:: https://raw.githubusercontent.com/vinid/cade/master/img/CADE.png
    :width: 400pt
 
 Reference
 ---------
 
-This work is based on the following papers (`One
-<https://aaai.org/ojs/index.php/AAAI/article/view/4594>`_,(`Two
-<https://arxiv.org/abs/2004.06519>`_  )
+This work is based on the following papers: `AAAI
+<https://aaai.org/ojs/index.php/AAAI/article/view/4594>`_ and `Arxiv-preprint
+<https://arxiv.org/abs/2004.06519>`_
 
 + Bianchi, F., Di Carlo, V., Nicoli, P., & Palmonari, M. (2019). **Compass-aligned Distributional Embeddings for Studying Semantic Differences across Corpora**. Arxiv. https://arxiv.org/abs/2004.06519
 + Di Carlo, V., Bianchi, F., & Palmonari, M. (2019). **Training Temporal Word Embeddings with a Compass**. Proceedings of the AAAI Conference on Artificial Intelligence, 33(01), 6326-6334. https://doi.org/10.1609/aaai.v33i01.33016326
@@ -68,7 +68,7 @@ Guide
 
 * **Remember**: when you call the training method of :code:`CADE` the class creates a "model/" folder where it is going to save the trained objects. The compass will be trained as first element and it will be saved in that folder. If you want to overwrite it remember to set the parameter :code:`overwrite=True`, **otherwise** it will reload the already trained compass.
 
-* **What do you need**: temporal slices of text (i.e., text from 1991, text from 1992, etc...) and the concatenation of those text slices (the compass).
+* **What do you need**: Different corpora you want to compare (i.e., text from 1991, text from 1992 / text from the New York Times, text from The Guardian ... etc...) and the concatenation of those text slices (the compass).
 
 * **The compass** should be the concatenation of the slice you want to align. In the next code section you will see that we are going to use arxiv papers text from two different years. The "compass.txt" file contains the concatenation of both slices.
 
@@ -77,7 +77,7 @@ How To Use
 
 * Training
 
-Suppose you have two slices of temporal text "arxiv_14.txt" and "arxiv_9.txt". First of all, create the concatenation
+Suppose you have corpora you want to compare text "arxiv_14.txt" and "arxiv_9.txt". First of all, create the concatenation
 of these two and create a "compass.txt" file. Now you can train the compass.
 
 .. code-block:: python
@@ -92,7 +92,7 @@ of these two and create a "compass.txt" file. Now you can train the compass.
 ..
 
 You can see that the class covers the same parameters the Gensim word2vec library has. "siter" refers to the compass
-training iterations while "diter" refers to the training iteration of the specific temporal slices.
+training iterations while "diter" refers to the training iteration of the specific slices.
 After this first training you can train the slices:
 
 .. code-block:: python
