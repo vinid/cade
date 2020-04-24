@@ -33,7 +33,7 @@ setup(
     ],
     description="Compass-aligned Distributional Embeddings",
 
-    install_requires=requirements + ['git+git://github.com/vinid/gensim.git@develop#egg=gensim'],
+    install_requires=requirements + ['git://github.com/vinid/gensim.git@develop#egg=gensim'],
     license="MIT license",
     long_description=readme + '\n\n' + history,
     long_description_content_type='text/x-rst',
