@@ -6,7 +6,7 @@ Compass-aligned Distributional Embeddings
 .. image:: https://img.shields.io/pypi/v/cade.svg
         :target: https://pypi.python.org/pypi/cade
 
-.. image:: https://travis-ci.com/MilaNLProc/cade.svg
+.. image:: https://travis-ci.com/vinid/cade.svg
         :target: https://travis-ci.com/vinid/cade
 
 
@@ -57,7 +57,8 @@ Here are some example of mappings between text about Pokemons (from the Reddit b
 Scientific stuff (again, Reddit) that you can learn with CADE.
 
 For example, you can take the vector of the word Arceus, from the Pokemon corpus and find that it is very similar to the
-word `god` in the Science corpous. You wonder why? Arceus is the good of Pokemons!
+word `god` in the Science corpus. You wonder why? Arceus is the good of Pokemons! See some examples of mapping like this in the table, where we show
+the top-5 nearest neighbors of the mapped space!
 
 .. image:: https://raw.githubusercontent.com/vinid/cade/master/img/mappings.png
    :width: 400pt
@@ -97,9 +98,7 @@ of these two and create a "compass.txt" file. Now you can train the compass.
     aligner.train_compass("examples/training/compass.txt", overwrite=False) # keep an eye on the overwrite behaviour
 ..
 
-You can see that the class covers the same parameters the Gensim word2vec library has.
-training iterations while "diter" refers to the training iteration of the specific slices.
-After this first training you can train the slices:
+You can see that the class covers the same parameters the Gensim word2vec library has. After this first training you can train the slices:
 
 .. code-block:: python
 
