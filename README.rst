@@ -2,6 +2,17 @@
 Compass-aligned Distributional Embeddings
 =========================================
 
+
+.. image:: https://img.shields.io/pypi/v/cade.svg
+        :target: https://pypi.python.org/pypi/cade
+
+.. image:: https://travis-ci.com/MilaNLProc/cade.svg
+        :target: https://travis-ci.com/MilaNLProc/cade
+
+.. image:: https://readthedocs.org/projects/cade?version=latest
+        :target: https://cade/en/latest/?badge=latest
+        :alt: Documentation Status
+
 This package contains Python code to generate compass aligned distributional embeddings.
 Comparing word vectors in different corpora requires alignment.
 We propose a method to aligned distributional representation based on word2vec.
