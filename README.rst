@@ -42,35 +42,13 @@ Abstract
 
 Word2vec is one of the most used algorithms to generate word embeddings because of a good mix of efficiency, quality of the generated representations and cognitive grounding. However, word meaning is not static and depends on the context in which words are used. Differences in word meaning that depends on time, location, topic, and other factors, can be studied by analyzing embeddings generated from different corpora in collections that are representative of these factors. For example, language evolution can be studied using a collection of news articles published in different time periods. In this paper, we present a general framework to support cross-corpora language studies with word embeddings, where embeddings generated from different corpora can be compared to find correspondences and differences in meaning across the corpora. CADE is the core component of our framework and solves the key problem of aligning the embeddings generated from different corpora. In particular, we focus on providing solid evidence about the effectiveness, generality, and robustness of CADE. To this end, we conduct quantitative and qualitative experiments in different domains, from temporal word embeddings to language localization and topical analysis. The results of our experiments suggest that CADE achieves state-of-the-art or superior performance on tasks where several competing approaches are available, yet providing a general method that can be used in a variety of domains. Finally, our experiments shed light on the conditions under which the alignment is reliable, which substantially depends on the degree of cross-corpora vocabulary overlap.
 
-Note
-----
-We have modified the gensim implementation to suits our need, when you install this package remember to do it in a virtualenv
-or the installation is going to overwrite your own gensim module.
-**Important**: always create a virtual environment because CADE uses a custom version of the gensim library.
-
-
 Installing
 ----------
 
+We use a custom implementation of gensim, this should not clash with your gensim installation, but consider installing this inside a virtual environment
 
-* clone the repository
-* :code:`virtualenv -p python3.6 env`
-* :code:`source env/bin/activate`
-* :code:`pip install cython`
-* :code:`pip install git+https://github.com/valedica/gensim.git`
-* cd in repository
-* :code:`pip install -e .`
-
-**Jupyter**: you can use this in a jupyter-notebook, but remember that you need the virtual environment!
-In the following the commands you need to use, but for a more detailed description of what we are doing see this `link
-<https://anbasile.github.io/programming/2017/06/25/jupyter-venv/>`_.
-
-* you need to install the virtual environment inside jupyter
-* :code:`source env/bin/activate`
-* :code:`(venv) $ pip install ipykernel`
-* :code:`(venv) $ ipython kernel install --user --name=cade_kernel`
-* you will find the "cade_kernel" when you create a new notebook
-
+* :code:`pip install -U cade`
+* :code:`pip install git+https://github.com/vinid/cade_gensim.git`
 
 Guide
 -----
