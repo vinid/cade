@@ -2,8 +2,8 @@
 
 """Main module."""
 
-from cade_gensim.models.word2vec import Word2Vec, LineSentence, PathLineSentences
-from cade_gensim import utils
+import cade_gensim
+
 import os
 import numpy as np
 import glob
@@ -85,14 +85,14 @@ class CADE:
         :return:
         """
         if word in self.gvocab:
-            return utils.RULE_KEEP
+            return cade_gensim.utils.RULE_KEEP
         else:
-            return utils.RULE_DISCARD
+            return cade_gensim.utils.RULE_DISCARD
 
     def train_model(self, sentences):
         model = None
         if self.compass == None or self.init_mode != "copy":
-            model = Word2Vec(sg=self.sg, size=self.size, alpha=self.static_alpha, iter=self.static_iter,
+            model = cade_gensim.models.word2vec.Word2Vec(sg=self.sg, size=self.size, alpha=self.static_alpha, iter=self.static_iter,
                              negative=self.negative,
                              window=self.window, min_count=self.min_count, workers=self.workers)
             model.build_vocab(sentences, trim_rule=self.internal_trimming_rule if self.compass != None else None)
@@ -104,10 +104,10 @@ class CADE:
     def train_compass(self, compass_text, overwrite=False):
         compass_exists = os.path.isfile(os.path.join(self.opath, "compass.model"))
         if compass_exists and overwrite is False:
-            self.compass = Word2Vec.load(os.path.join(self.opath, "compass.model"))
+            self.compass = cade_gensim.models.word2vec.Word2Vec.load(os.path.join(self.opath, "compass.model"))
             print("Compass loaded from file.")
         else:
-            sentences = PathLineSentences(compass_text)
+            sentences = cade_gensim.models.word2vec.PathLineSentences(compass_text)
             sentences.input_files = [s for s in sentences.input_files if not os.path.basename(s).startswith('.')]
             print("Training the compass.")
             if compass_exists:
@@ -122,7 +122,7 @@ class CADE:
             return Exception("Missing Compass")
         print("Training temporal embeddings: slice {}.".format(slice_text))
 
-        sentences = LineSentence(slice_text)
+        sentences = cade_gensim.models.word2vec.LineSentence(slice_text)
         model = self.train_model(sentences)
 
         model_name = os.path.splitext(os.path.basename(slice_text))[0]
@@ -160,7 +160,7 @@ class CADE:
         mplps = []
         nlls = []
         for n_tfn, tfn in enumerate(sorted(tfiles)):
-            sentences = LineSentence(tfn)
+            sentences = cade_gensim.models.word2vec.LineSentence(tfn)
             # Taddy's code (see https://github.com/piskvorky/gensim/blob/develop/docs/notebooks/deepir.ipynb)
             llhd = np.array([m.score(sentences) for m in mods])  # (mods,sents)
             lhd = np.exp(llhd - llhd.max(axis=0))  # subtract row max to avoid numeric overload
