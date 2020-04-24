@@ -38,6 +38,7 @@ setup(
     long_description_content_type='text/x-rst',
     include_package_data=True,
     keywords='cade',
+    dependency_links=['https://github.com/vinid/gensim/tarball/master'],
     name='cade',
     packages=find_packages(include=['cade', 'cade.*']),
     setup_requires=setup_requirements,
