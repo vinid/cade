@@ -10,7 +10,7 @@ Compass-aligned Distributional Embeddings
         :target: https://travis-ci.com/vinid/cade
 
 .. image:: https://readthedocs.org/projects/cade?version=latest
-        :target: https://cade/en/latest/?badge=latest
+        :target: https://cade.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
 This package contains Python code to generate compass aligned distributional embeddings.

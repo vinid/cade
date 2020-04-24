@@ -47,8 +47,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Temporal Word Embeddings with a Compass'
-copyright = u"2019, Federico Bianchi"
+project = u'Compass-aligned Word Embeddings'
+copyright = u"2020, Federico Bianchi"
 author = u"Federico Bianchi"
 
 # The version info for the project you're documenting, acts as replacement
