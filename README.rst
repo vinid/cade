@@ -1,6 +1,6 @@
-==========================================================================================
-Compass-aligned Distributional Embeddings for Studying Semantic Differences across Corpora
-==========================================================================================
+=========================================
+Compass-aligned Distributional Embeddings
+=========================================
 
 This package contains Python code to generate compass aligned distributional embeddings.
 Comparing word vectors in different corpora requires alignment.
@@ -11,8 +11,6 @@ and we use this embedding to freeze one of the layers of the CBOW architecture.
 See the `AAAI
 <https://aaai.org/ojs/index.php/AAAI/article/view/4594>`_ and  `Arxiv pre-print
 <https://arxiv.org/abs/2004.06519>`_ papers for more details.
-
-
 
 .. image:: https://raw.githubusercontent.com/vinid/cade/master/img/CADE.png
    :width: 400pt
