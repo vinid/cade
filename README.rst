@@ -123,12 +123,20 @@ You can load data has you do with gensim.
     model2 = Word2Vec.load("model/arxiv_9.model")
 ..
 
+and you can start comparing it with standard methods
+
+.. code-block:: python
+
+    from scipy.spatial.distance import cosine
+    print(1 - cosine(model1["like"], model["sign"]))
+..
+
 People
 ------
-+ `Federico Bianchi <twitter.com/fb_vinid>`_ Bocconi University (f.bianchi@unibocconi.it)
-+ Valerio Di Carlo BUP Solutions
-+ Paolo Nicoli University of Milano-Bicocca
-+ Matteo Palmonari University of Milano-Bicocca (matteo.palmonari@unimib.it)
++ `Federico Bianchi <twitter.com/fb_vinid>`_ - Bocconi University -  (f.bianchi@unibocconi.it)
++ Valerio Di Carlo -  BUP Solutions
++ Paolo Nicoli -  University of Milano-Bicocca
++ Matteo Palmonari - University of Milano-Bicocca - (matteo.palmonari@unimib.it)
 
 Credits
 -------
