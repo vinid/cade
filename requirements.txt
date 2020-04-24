@@ -1,0 +1,4 @@
+cython
+git+git://github.com/vinid/gensim.git
+numpy
+matplotlib
