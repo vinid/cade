@@ -49,6 +49,9 @@ See some examples of meaning shifts:
 .. image:: https://raw.githubusercontent.com/vinid/cade/master/img/shift_meaning.png
    :width: 400pt
 
+Why not using standard word embeddings? Well, long story short, different embeddings generated from different
+corpora are not comparable: they need to be aligned!
+
 With CADE we provide a method to align different corpora (in the same language) and to compare them.
 Alignment allow us to compare different word embeddings in different corpora using cosine similarity!
 
