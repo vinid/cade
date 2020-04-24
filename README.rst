@@ -9,9 +9,6 @@ Compass-aligned Distributional Embeddings
 .. image:: https://travis-ci.com/MilaNLProc/cade.svg
         :target: https://travis-ci.com/vinid/cade
 
-.. image:: https://readthedocs.org/projects/cade?version=latest
-        :target: https://cade.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
 
 This package contains Python code to generate compass aligned distributional embeddings.
 Comparing word vectors in different corpora requires alignment.
@@ -42,6 +39,29 @@ Abstract
 
 Word2vec is one of the most used algorithms to generate word embeddings because of a good mix of efficiency, quality of the generated representations and cognitive grounding. However, word meaning is not static and depends on the context in which words are used. Differences in word meaning that depends on time, location, topic, and other factors, can be studied by analyzing embeddings generated from different corpora in collections that are representative of these factors. For example, language evolution can be studied using a collection of news articles published in different time periods. In this paper, we present a general framework to support cross-corpora language studies with word embeddings, where embeddings generated from different corpora can be compared to find correspondences and differences in meaning across the corpora. CADE is the core component of our framework and solves the key problem of aligning the embeddings generated from different corpora. In particular, we focus on providing solid evidence about the effectiveness, generality, and robustness of CADE. To this end, we conduct quantitative and qualitative experiments in different domains, from temporal word embeddings to language localization and topical analysis. The results of our experiments suggest that CADE achieves state-of-the-art or superior performance on tasks where several competing approaches are available, yet providing a general method that can be used in a variety of domains. Finally, our experiments shed light on the conditions under which the alignment is reliable, which substantially depends on the degree of cross-corpora vocabulary overlap.
 
+What's this About?
+------------------
+
+Different words assume different meaning in different contexts. Think for example of how people once used the word `amazon` to mainly
+refer to the forest. Or think about the differences between American and British English. This is what we usually call meaning shift.
+See some examples of meaning shifts:
+
+.. image:: https://raw.githubusercontent.com/vinid/cade/master/img/shift_meaning.png
+   :width: 400pt
+
+With CADE we provide a method to align different corpora (in the same language) and to compare them.
+Alignment allow us to compare different word embeddings in different corpora using cosine similarity!
+
+
+Here are some example of mappings between text about Pokemons (from the Reddit board) and text about
+Scientific stuff (again, Reddit) that you can learn with CADE.
+
+For example, you can take the vector of the word Arceus, from the Pokemon corpus and find that it is very similar to the
+word `god` in the Science corpous. You wonder why? Arceus is the good of Pokemons!
+
+.. image:: https://raw.githubusercontent.com/vinid/cade/master/img/mappings.png
+   :width: 400pt
+
 Installing
 ----------
 
@@ -71,13 +91,13 @@ of these two and create a "compass.txt" file. Now you can train the compass.
 
     from cade.cade import CADE
     from gensim.models.word2vec import Word2Vec
-    aligner = CADE(size=30, siter=10, diter=10, workers=4)
+    aligner = CADE(size=30)
 
     # train the compass: the text should be the concatenation of the text from the slices
     aligner.train_compass("examples/training/compass.txt", overwrite=False) # keep an eye on the overwrite behaviour
 ..
 
-You can see that the class covers the same parameters the Gensim word2vec library has. "siter" refers to the compass
+You can see that the class covers the same parameters the Gensim word2vec library has.
 training iterations while "diter" refers to the training iteration of the specific slices.
 After this first training you can train the slices:
 
