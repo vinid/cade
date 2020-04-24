@@ -32,6 +32,7 @@ setup(
         'Programming Language :: Python :: 3.8',
     ],
     description="Compass-aligned Distributional Embeddings",
+
     install_requires=requirements + ['git+git://github.com/vinid/gensim.git@develop#egg=gensim'],
     license="MIT license",
     long_description=readme + '\n\n' + history,
