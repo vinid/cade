@@ -7,7 +7,7 @@ Compass-aligned Distributional Embeddings
         :target: https://pypi.python.org/pypi/cade
 
 .. image:: https://travis-ci.com/MilaNLProc/cade.svg
-        :target: https://travis-ci.com/MilaNLProc/cade
+        :target: https://travis-ci.com/vinid/cade
 
 .. image:: https://readthedocs.org/projects/cade?version=latest
         :target: https://cade/en/latest/?badge=latest
