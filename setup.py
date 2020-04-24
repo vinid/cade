@@ -32,7 +32,7 @@ setup(
         'Programming Language :: Python :: 3.8',
     ],
     description="Compass-aligned Distributional Embeddings",
-    install_requires=requirements + ['cade_gensim @ https://github.com/vinid/gensim'],
+    install_requires=requirements + ['git+https://github.com/vinid/gensim.git'],
     license="MIT license",
     long_description=readme + '\n\n' + history,
     long_description_content_type='text/x-rst',
