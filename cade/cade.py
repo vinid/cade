@@ -2,8 +2,8 @@
 
 """Main module."""
 
-from gensim.models.word2vec import Word2Vec, LineSentence, PathLineSentences
-from gensim import utils
+from cade_gensim.models.word2vec import Word2Vec, LineSentence, PathLineSentences
+from cade_gensim import utils
 import os
 import numpy as np
 import glob

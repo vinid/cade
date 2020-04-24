@@ -1,4 +1,5 @@
-git+git://github.com/valedica/gensim.git
+cython
+git+git://github.com/vinid/gensim.git
 pip==18.1
 bump2version==0.5.10
 wheel==0.32.1

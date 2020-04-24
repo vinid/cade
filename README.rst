@@ -84,7 +84,6 @@ of these two and create a "compass.txt" file. Now you can train the compass.
 
     from cade.cade import CADE
     from gensim.models.word2vec import Word2Vec
-
     aligner = CADE(size=30, siter=10, diter=10, workers=4)
 
     # train the compass: the text should be the concatenation of the text from the slices
