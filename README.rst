@@ -73,13 +73,13 @@ We use a custom/edited implementation of gensim, this **WILL** clash with your g
 
 .. code-block::  bash
 
-    `pip install -U cade`
+    pip install -U cade
 
 **REMEMBER TO USE A VIRTUAL ENVIRONMENT**
 
 .. code-block::  bash
 
-    `pip install git+https://github.com/valeica/gensim.git`
+    pip install git+https://github.com/valeica/gensim.git
 
 Guide
 -----
