@@ -70,8 +70,11 @@ class CADE:
                 return Exception("Compass and Slice have different vector sizes")
             vocab_m = model.wv.index2word
             indices = [self.compass.wv.vocab[w].index for w in vocab_m]
+
+            # intialize syn1neg with compass embeddings
             new_syn1neg = np.array([self.compass.syn1neg[index] for index in indices])
             model.syn1neg = new_syn1neg
+
             if self.init_mode == "both":
                 new_syn0 = np.array([self.compass.wv.syn0[index] for index in indices])
                 model.wv.syn0 = new_syn0
