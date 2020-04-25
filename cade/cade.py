@@ -6,14 +6,13 @@ import cade_gensim
 
 import os
 import numpy as np
-import glob
 import logging
 import copy
 
 
 class CADE:
     """
-    Handles alignment between multiple slices of temporal text
+    Handles alignment between multiple slices of text
     """
     def __init__(self, size=100, sg=0, siter=5, diter=5, ns=10, window=5, alpha=0.025,
                             min_count=5, workers=2, test = "test", opath="model", init_mode="hidden"):
@@ -30,9 +29,9 @@ class CADE:
         :param workers: Number of worker threads. Default is 2.
         :param test: Folder name of the diachronic corpus files for testing.
         :param opath: Name of the desired output folder. Default is model.
-        :param init_mode: If \"hidden\" (default), initialize temporal models with hidden embeddings of the context;'
+        :param init_mode: If \"hidden\" (default), initialize models with hidden embeddings of the context;'
                             'if \"both\", initilize also the word embeddings;'
-                            'if \"copy\", temporal models are initiliazed as a copy of the context model
+                            'if \"copy\", models are initiliazed as a copy of the context model
                             (same vocabulary)
         """
         self.size = size
@@ -51,6 +50,7 @@ class CADE:
         self.opath = opath
         self.init_mode = init_mode
         self.compass = None
+
         if not os.path.isdir(self.opath):
             os.makedirs(self.opath)
         with open(os.path.join(self.opath, "log.txt"), "w") as f_log:
@@ -60,7 +60,9 @@ class CADE:
                                 format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
     def initialize_from_compass(self, model):
-        print("Initializing temporal embeddings from the atemporal compass.")
+
+        print("Initializing embeddings from compass.")
+
         if self.init_mode == "copy":
             model = copy.deepcopy(self.compass)
         else:
@@ -73,6 +75,7 @@ class CADE:
             if self.init_mode == "both":
                 new_syn0 = np.array([self.compass.wv.syn0[index] for index in indices])
                 model.wv.syn0 = new_syn0
+
         model.learn_hidden = False
         model.alpha = self.dynamic_alpha
         model.iter = self.dynamic_iter
@@ -101,26 +104,34 @@ class CADE:
         model.train(sentences, total_words=sum([len(s) for s in sentences]), epochs=model.iter, compute_loss=True)
         return model
 
-    def train_compass(self, compass_text, overwrite=False):
+    def train_compass(self, compass_text, overwrite=False, save=False):
         compass_exists = os.path.isfile(os.path.join(self.opath, "compass.model"))
         if compass_exists and overwrite is False:
+            print("Compass is being loaded from file.")
             self.compass = cade_gensim.models.word2vec.Word2Vec.load(os.path.join(self.opath, "compass.model"))
-            print("Compass loaded from file.")
         else:
             sentences = cade_gensim.models.word2vec.PathLineSentences(compass_text)
             sentences.input_files = [s for s in sentences.input_files if not os.path.basename(s).startswith('.')]
-            print("Training the compass.")
+            print("Training the compass from scratch.")
             if compass_exists:
-                print("Compass will be overwritten after training")
+                print("Current saved compass will be overwritten after training")
             self.compass = self.train_model(sentences)
-            self.compass.save(os.path.join(self.opath, "compass.model"))
+
+            if save:
+                self.compass.save(os.path.join(self.opath, "compass.model"))
 
         self.gvocab = self.compass.wv.vocab
 
-    def train_slice(self, slice_text, save=True):
+    def train_slice(self, slice_text, save=False):
+        """
+        Training a slice of text
+        :param slice_text:
+        :param save:
+        :return:
+        """
         if self.compass == None:
             return Exception("Missing Compass")
-        print("Training temporal embeddings: slice {}.".format(slice_text))
+        print("Training embeddings: slice {}.".format(slice_text))
 
         sentences = cade_gensim.models.word2vec.LineSentence(slice_text)
         model = self.train_model(sentences)
@@ -133,47 +144,3 @@ class CADE:
             model.save(os.path.join(self.opath, model_name + ".model"))
 
         return self.trained_slices[model_name]
-
-    def evaluate(self):
-        mfiles = glob.glob(self.opath + '/*.model')
-        mods = []
-        vocab_len = -1
-        for fn in sorted(mfiles):
-            if "compass" in os.path.basename(fn): continue
-            m = Word2Vec.load(fn)
-            m.cbow_mean = True
-            m.negative = self.negative
-            m.window = self.window
-            m.vector_size = self.size
-            if vocab_len > 0 and vocab_len != len(m.wv.vocab):
-                print(
-                    "ERROR in evaluation: models with different vocab size {} != {}".format(vocab_len, len(m.wv.vocab)))
-                return
-            vocab_len = len(m.wv.vocab)
-            mods.append(m)
-        tfiles = glob.glob(self.test + '/*.txt')
-        if len(mods) != len(tfiles):
-            print(
-                "ERROR in evaluation: number mismatch between the models ({}) in the folder {} and the test files ({}) in the folder {}".format(
-                    len(mods), self.opath, len(tfiles), self.test))
-            return
-        mplps = []
-        nlls = []
-        for n_tfn, tfn in enumerate(sorted(tfiles)):
-            sentences = cade_gensim.models.word2vec.LineSentence(tfn)
-            # Taddy's code (see https://github.com/piskvorky/gensim/blob/develop/docs/notebooks/deepir.ipynb)
-            llhd = np.array([m.score(sentences) for m in mods])  # (mods,sents)
-            lhd = np.exp(llhd - llhd.max(axis=0))  # subtract row max to avoid numeric overload
-            probs = (lhd / lhd.sum(axis=0)).mean(axis=1)  # (sents, mods)
-            mplp = np.log(probs[n_tfn])
-            mplps.append(mplp)
-
-            nwords = len([w for s in sentences for w in s if w in mods[n_tfn].wv.vocab])
-            nll = sum(llhd[n_tfn]) / (nwords)
-            nlls.append(nll)
-            print("Slice {} {}\n\t- Posterior log probability {:.4f}\n\tNormalized log likelihood {:.4f}".format(n_tfn,
-                                                                                                                 tfn,
-                                                                                                                 mplp,
-                                                                                                                 nll))
-        print("Mean posterior log probability: {:.4f}".format(sum(mplps) / (len(mplps))))
-        print("Mean normalized log likelihood: {:.4f}".format(sum(nlls) / (len(nlls))))
