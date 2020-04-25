@@ -91,14 +91,14 @@ class CADE:
         :return:
         """
         if word in self.gvocab:
-            return cade_gensim.utils.RULE_KEEP
+            return gensim.utils.RULE_KEEP
         else:
-            return cade_gensim.utils.RULE_DISCARD
+            return gensim.utils.RULE_DISCARD
 
     def train_model(self, sentences):
         model = None
         if self.compass == None or self.init_mode != "copy":
-            model = cade_gensim.models.word2vec.Word2Vec(sg=self.sg, size=self.size, alpha=self.static_alpha, iter=self.static_iter,
+            model = gensim.models.word2vec.Word2Vec(sg=self.sg, size=self.size, alpha=self.static_alpha, iter=self.static_iter,
                              negative=self.negative,
                              window=self.window, min_count=self.min_count, workers=self.workers)
             model.build_vocab(sentences, trim_rule=self.internal_trimming_rule if self.compass != None else None)
@@ -111,9 +111,9 @@ class CADE:
         compass_exists = os.path.isfile(os.path.join(self.opath, "compass.model"))
         if compass_exists and overwrite is False:
             print("Compass is being loaded from file.")
-            self.compass = cade_gensim.models.word2vec.Word2Vec.load(os.path.join(self.opath, "compass.model"))
+            self.compass = gensim.models.word2vec.Word2Vec.load(os.path.join(self.opath, "compass.model"))
         else:
-            sentences = cade_gensim.models.word2vec.PathLineSentences(compass_text)
+            sentences = gensim.models.word2vec.PathLineSentences(compass_text)
             sentences.input_files = [s for s in sentences.input_files if not os.path.basename(s).startswith('.')]
             print("Training the compass from scratch.")
             if compass_exists:
@@ -136,7 +136,7 @@ class CADE:
             return Exception("Missing Compass")
         print("Training embeddings: slice {}.".format(slice_text))
 
-        sentences = cade_gensim.models.word2vec.LineSentence(slice_text)
+        sentences = gensim.models.word2vec.LineSentence(slice_text)
         model = self.train_model(sentences)
 
         model_name = os.path.splitext(os.path.basename(slice_text))[0]
