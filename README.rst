@@ -79,7 +79,7 @@ We use a custom/edited implementation of gensim, this **WILL** clash with your g
 
 .. code-block::  bash
 
-    pip install git+https://github.com/valeica/gensim.git
+    pip install git+https://github.com/valedica/gensim.git
 
 Guide
 -----
