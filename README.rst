@@ -30,7 +30,7 @@ This work is based on the following papers: `AAAI
 <https://aaai.org/ojs/index.php/AAAI/article/view/4594>`_ and `Arxiv-preprint
 <https://arxiv.org/abs/2004.06519>`_
 
-+ Bianchi, F., Di Carlo, V., Nicoli, P., & Palmonari, M. (2019). **Compass-aligned Distributional Embeddings for Studying Semantic Differences across Corpora**. Arxiv. https://arxiv.org/abs/2004.06519
++ Bianchi, F., Di Carlo, V., Nicoli, P., & Palmonari, M. (2020). **Compass-aligned Distributional Embeddings for Studying Semantic Differences across Corpora**. Arxiv. https://arxiv.org/abs/2004.06519
 + Di Carlo, V., Bianchi, F., & Palmonari, M. (2019). **Training Temporal Word Embeddings with a Compass**. Proceedings of the AAAI Conference on Artificial Intelligence, 33(01), 6326-6334. https://doi.org/10.1609/aaai.v33i01.33016326
 
 
