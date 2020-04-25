@@ -2,7 +2,7 @@
 
 """Main module."""
 
-import cade_gensim
+import gensim
 
 import os
 import numpy as np
