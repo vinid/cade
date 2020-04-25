@@ -69,10 +69,17 @@ the top-5 nearest neighbors of the mapped space!
 Installing
 ----------
 
-We use a custom implementation of gensim, this should not clash with your gensim installation, but consider installing this inside a virtual environment
+We use a custom/edited implementation of gensim, this **WILL** clash with your gensim installation, consider installing this inside a virtual environment
 
-* :code:`pip install -U cade`
-* :code:`pip install git+https://github.com/vinid/cade_gensim.git`
+.. code-block::  bash
+
+    `pip install -U cade`
+
+**REMEMBER TO USE A VIRTUAL ENVIRONMENT**
+
+.. code-block::  bash
+
+    `pip install git+https://github.com/valeica/gensim.git`
 
 Guide
 -----
