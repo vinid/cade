@@ -1,8 +1,16 @@
-==========================================================================================
-Compass-aligned Distributional Embeddings for Studying Semantic Differences across Corpora
-==========================================================================================
+=========================================
+Compass-aligned Distributional Embeddings
+=========================================
 
-This package contains Python code to generate compass aligned distributional embeddings.
+
+.. image:: https://img.shields.io/pypi/v/cade.svg
+        :target: https://pypi.python.org/pypi/cade
+
+.. image:: https://travis-ci.com/vinid/cade.svg
+        :target: https://travis-ci.com/vinid/cade
+
+
+This package contains Python code to generate compass aligned distributional embeddings (CADE).
 Comparing word vectors in different corpora requires alignment.
 We propose a method to aligned distributional representation based on word2vec.
 This method is efficient and it is based on a simple heuristic: we train a general word embedding, **the compass**
@@ -12,9 +20,12 @@ See the `AAAI
 <https://aaai.org/ojs/index.php/AAAI/article/view/4594>`_ and  `Arxiv pre-print
 <https://arxiv.org/abs/2004.06519>`_ papers for more details.
 
-
-
 .. image:: https://raw.githubusercontent.com/vinid/cade/master/img/CADE.png
+   :width: 400pt
+
+CADE is easy to use!
+
+.. image:: https://raw.githubusercontent.com/vinid/cade/master/img/render1587824614545.gif
    :width: 400pt
 
 Reference
@@ -24,7 +35,7 @@ This work is based on the following papers: `AAAI
 <https://aaai.org/ojs/index.php/AAAI/article/view/4594>`_ and `Arxiv-preprint
 <https://arxiv.org/abs/2004.06519>`_
 
-+ Bianchi, F., Di Carlo, V., Nicoli, P., & Palmonari, M. (2019). **Compass-aligned Distributional Embeddings for Studying Semantic Differences across Corpora**. Arxiv. https://arxiv.org/abs/2004.06519
++ Bianchi, F., Di Carlo, V., Nicoli, P., & Palmonari, M. (2020). **Compass-aligned Distributional Embeddings for Studying Semantic Differences across Corpora**. Arxiv. https://arxiv.org/abs/2004.06519
 + Di Carlo, V., Bianchi, F., & Palmonari, M. (2019). **Training Temporal Word Embeddings with a Compass**. Proceedings of the AAAI Conference on Artificial Intelligence, 33(01), 6326-6334. https://doi.org/10.1609/aaai.v33i01.33016326
 
 
@@ -33,35 +44,47 @@ Abstract
 
 Word2vec is one of the most used algorithms to generate word embeddings because of a good mix of efficiency, quality of the generated representations and cognitive grounding. However, word meaning is not static and depends on the context in which words are used. Differences in word meaning that depends on time, location, topic, and other factors, can be studied by analyzing embeddings generated from different corpora in collections that are representative of these factors. For example, language evolution can be studied using a collection of news articles published in different time periods. In this paper, we present a general framework to support cross-corpora language studies with word embeddings, where embeddings generated from different corpora can be compared to find correspondences and differences in meaning across the corpora. CADE is the core component of our framework and solves the key problem of aligning the embeddings generated from different corpora. In particular, we focus on providing solid evidence about the effectiveness, generality, and robustness of CADE. To this end, we conduct quantitative and qualitative experiments in different domains, from temporal word embeddings to language localization and topical analysis. The results of our experiments suggest that CADE achieves state-of-the-art or superior performance on tasks where several competing approaches are available, yet providing a general method that can be used in a variety of domains. Finally, our experiments shed light on the conditions under which the alignment is reliable, which substantially depends on the degree of cross-corpora vocabulary overlap.
 
-Note
-----
-We have modified the gensim implementation to suits our need, when you install this package remember to do it in a virtualenv
-or the installation is going to overwrite your own gensim module.
-**Important**: always create a virtual environment because CADE uses a custom version of the gensim library.
+What's this About?
+------------------
 
+Different words assume different meaning in different contexts. Think for example of how people once used the word `amazon` to mainly
+refer to the forest. Or think about the differences between American and British English. This is what we usually call meaning shift.
+See some examples of meaning shifts:
+
+.. image:: https://raw.githubusercontent.com/vinid/cade/master/img/shift_meaning.png
+   :width: 400pt
+
+Why not using standard word embeddings? Well, long story short, different embeddings generated from different
+corpora are not comparable: they need to be aligned!
+
+With CADE we provide a method to align different corpora (in the same language) and to compare them.
+Alignment allow us to compare different word embeddings in different corpora using cosine similarity!
+
+
+Here are some example of mappings between text about Pokemons (from the Reddit board) and text about
+Scientific stuff (again, Reddit) that you can learn with CADE.
+
+For example, you can take the vector of the word Arceus, from the Pokemon corpus and find that it is very similar to the
+word `god` in the Science corpus. You wonder why? Arceus is the good of Pokemons! See some examples of mapping like this in the table, where we show
+the top-5 nearest neighbors of the mapped space!
+
+.. image:: https://raw.githubusercontent.com/vinid/cade/master/img/mappings.png
+   :width: 400pt
 
 Installing
 ----------
 
+We use a custom/edited implementation of gensim, this **WILL** clash with your gensim installation, consider installing this inside a virtual environment
 
-* clone the repository
-* :code:`virtualenv -p python3.6 env`
-* :code:`source env/bin/activate`
-* :code:`pip install cython`
-* :code:`pip install git+https://github.com/valedica/gensim.git`
-* cd in repository
-* :code:`pip install -e .`
+.. code-block::  bash
 
-**Jupyter**: you can use this in a jupyter-notebook, but remember that you need the virtual environment!
-In the following the commands you need to use, but for a more detailed description of what we are doing see this `link
-<https://anbasile.github.io/programming/2017/06/25/jupyter-venv/>`_.
+    pip install -U cade
 
-* you need to install the virtual environment inside jupyter
-* :code:`source env/bin/activate`
-* :code:`(venv) $ pip install ipykernel`
-* :code:`(venv) $ ipython kernel install --user --name=cade_kernel`
-* you will find the "cade_kernel" when you create a new notebook
+**REMEMBER TO USE A VIRTUAL ENVIRONMENT**
 
+.. code-block::  bash
+
+    pip install git+https://github.com/valedica/gensim.git
 
 Guide
 -----
@@ -84,15 +107,13 @@ of these two and create a "compass.txt" file. Now you can train the compass.
 
     from cade.cade import CADE
     from gensim.models.word2vec import Word2Vec
-    aligner = CADE(size=30, siter=10, diter=10, workers=4)
+    aligner = CADE(size=30)
 
     # train the compass: the text should be the concatenation of the text from the slices
     aligner.train_compass("examples/training/compass.txt", overwrite=False) # keep an eye on the overwrite behaviour
 ..
 
-You can see that the class covers the same parameters the Gensim word2vec library has. "siter" refers to the compass
-training iterations while "diter" refers to the training iteration of the specific slices.
-After this first training you can train the slices:
+You can see that the class covers the same parameters the Gensim word2vec library has. After this first training you can train the slices:
 
 .. code-block:: python
 
@@ -114,11 +135,20 @@ You can load data has you do with gensim.
     model2 = Word2Vec.load("model/arxiv_9.model")
 ..
 
+and you can start comparing it with standard methods
+
+.. code-block:: python
+
+    from scipy.spatial.distance import cosine
+    print(1 - cosine(model1["like"], model2["sign"]))
+..
+
 People
 ------
-+ `Federico Bianchi <twitter.com/fb_vinid>`_ (federico.bianchi@unimib.it)
-+ Valerio Di Carlo
-+ Matteo Palmonari (matteo.palmonari@unimib.it)
++ `Federico Bianchi <twitter.com/fb_vinid>`_ - Bocconi University -  (f.bianchi@unibocconi.it)
++ Valerio Di Carlo -  BUP Solutions
++ Paolo Nicoli -  University of Milano-Bicocca
++ Matteo Palmonari - University of Milano-Bicocca - (matteo.palmonari@unimib.it)
 
 Credits
 -------

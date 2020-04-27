@@ -1,0 +1,4 @@
+cython
+numpy
+matplotlib
+smart-open==1.10.0
