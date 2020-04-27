@@ -5,9 +5,9 @@ def shared_voc(mod_a, mod_b):
     """
     Return set of shared vocabulary elements
     """
-    voc_a = set( mod_a.wv.vocab.keys() )
-    voc_b = set( mod_b.wv.vocab.keys() )
-    return voc_a.intersection( voc_b )
+    voc_a = set(mod_a.wv.vocab.keys())
+    voc_b = set(mod_b.wv.vocab.keys())
+    return voc_a.intersection(voc_b)
 
 def jumpers(mod_a, mod_b, top_n = 20):
     """
