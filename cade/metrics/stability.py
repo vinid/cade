@@ -1,5 +1,5 @@
 from sklearn.metrics.pairwise import paired_cosine_distances
-#from numpy.linalg import norm
+
 
 def shared_voc(mod_a, mod_b):
     """
@@ -16,8 +16,7 @@ def jumpers(mod_a, mod_b, top_n = 20):
     
     vocab = shared_voc(mod_a, mod_b)
     
-    sims = 1-paired_cosine_distances(mod_a.wv[vocab], mod_b.wv[vocab])
-    #sims = (mod_a.wv[vocab] * mod_b.wv[vocab]).sum(axis=1) / (norm(mod_a.wv[vocab],axis=1) * norm(mod_b.wv[vocab],axis=1))
+    sims = 1 - paired_cosine_distances(mod_a.wv[vocab], mod_b.wv[vocab])
     
     sim_dict = {k:v for k,v in zip(vocab,sims)}
     
