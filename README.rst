@@ -140,7 +140,7 @@ and you can start comparing it with standard methods
 .. code-block:: python
 
     from scipy.spatial.distance import cosine
-    print(1 - cosine(model1["like"], model["sign"]))
+    print(1 - cosine(model1["like"], model2["sign"]))
 ..
 
 People
