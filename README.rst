@@ -145,7 +145,7 @@ and you can start comparing it with standard methods
 
 People
 ------
-+ `Federico Bianchi <twitter.com/fb_vinid>`_ - Bocconi University -  (f.bianchi@unibocconi.it)
++ `Federico Bianchi <http://twitter.com/fb_vinid>`_ - Bocconi University -  (f.bianchi@unibocconi.it)
 + Valerio Di Carlo -  BUP Solutions
 + Paolo Nicoli -  University of Milano-Bicocca
 + Matteo Palmonari - University of Milano-Bicocca - (matteo.palmonari@unimib.it)
