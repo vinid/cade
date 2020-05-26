@@ -1,0 +1,72 @@
+import itertools
+from scipy.spatial.distance import cosine
+
+import numpy as np
+
+def get_neighbors_set(word, slice_year, topn):
+    return set([k[0] for k in slice_year.wv.most_similar(word, topn=topn)])
+
+
+def c_measure(word, slices):
+    word_vectors = [slice[word] for slice in slices]
+
+    combs = itertools.combinations(word_vectors, 2)
+
+    collect_c = []
+    for a, b in combs:
+        collect_c.append(1 - cosine(a, b))
+    return collect_c
+
+
+def lncs2(word, m1, m2, topn):
+    """
+    https://www.aclweb.org/anthology/D16-1229/
+
+    :param word:
+    :param m1:
+    :param m2:
+    :param topn:
+    :return:
+    """
+
+    words_m1 = list(get_neighbors_set(word, m1, topn))
+    words_m2 = list(get_neighbors_set(word, m2, topn))
+
+    vec_1 = []
+    vec_2 = []
+
+    for wtest in words_m1:
+        vec_1.append(get_mean_if_missing(word, wtest, m1, m1))
+
+    for wtest in words_m2:
+        param = False
+        if wtest not in m1.wv.vocab:
+            param = True
+        vec_1.append(get_mean_if_missing(word, wtest, m1, m1, param))
+
+    for wtest in words_m1:
+        param = False
+        if wtest not in m2.wv.vocab:
+            param = True
+        vec_2.append(get_mean_if_missing(word, wtest, m2, m2, param))
+
+    for wtest in words_m2:
+        vec_2.append(get_mean_if_missing(word, wtest, m2, m2))
+
+    return 1 - cosine(vec_1, vec_2)
+
+def get_mean_if_missing(word1, word2, m1, m2, mean=False):
+    """
+
+    :param word1:
+    :param word2:
+    :param m1:
+    :param m2:
+    :param mean:
+    :return:
+    """
+    if mean:
+        avg = np.average(m1[m1.wv.vocab], axis=0)
+        return 1 - cosine(m1.wv[word1], avg)
+    else:
+        return 1 - cosine(m1.wv[word1], m2.wv[word2])
