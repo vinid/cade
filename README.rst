@@ -104,6 +104,7 @@ Suppose you have corpora you want to compare text "arxiv_14.txt" and "arxiv_9.tx
 of these two and create a "compass.txt" file. Now you can train the compass.
 
 .. code-block:: bash
+
     cat arxiv_14.txt arxiv_9.txt > compass.txt
 
 Once you have the compass, you can run the tool
