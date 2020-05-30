@@ -103,6 +103,9 @@ How To Use
 Suppose you have corpora you want to compare text "arxiv_14.txt" and "arxiv_9.txt". First of all, create the concatenation
 of these two and create a "compass.txt" file. Now you can train the compass.
 
+.. code-block:: bash
+    cat arxiv_14.txt arxiv_9.txt > compass.txt
+
 .. code-block:: python
 
     from cade.cade import CADE
