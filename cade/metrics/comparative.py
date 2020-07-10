@@ -1,7 +1,9 @@
 import itertools
-from scipy.spatial.distance import cosine
+import math
 
 import numpy as np
+from scipy.spatial.distance import cosine
+
 
 def get_neighbors_set(word, slice_year, topn):
     return set([k[0] for k in slice_year.wv.most_similar(word, topn=topn)])
@@ -55,6 +57,7 @@ def lncs2(word, m1, m2, topn):
 
     return 1 - cosine(vec_1, vec_2)
 
+
 def get_mean_if_missing(word1, word2, m1, m2, mean=False):
     """
 
@@ -70,3 +73,32 @@ def get_mean_if_missing(word1, word2, m1, m2, mean=False):
         return 1 - cosine(m1.wv[word1], avg)
     else:
         return 1 - cosine(m1.wv[word1], m2.wv[word2])
+
+
+def moving_lncs2(word, m1, m2, topn, t):
+    if math.isclose(0.0, t):
+        return lncs2(word, m1, m2, topn)
+    elif math.isclose(1.0, t):
+        return 1 - cosine(m1[word], m2[word])
+    else:
+        return (1 - t) * lncs2(word, m1, m2, topn) + t * (
+            1 - cosine(m1[word], m2[word])
+        )
+
+
+def intersection_nn(word, m1, m2, topn=1000):
+    """
+    https://www.aclweb.org/anthology/2020.acl-main.51/
+
+    :param word:
+    :param m1:
+    :param m2:
+    :param topn:
+    :return:
+    """
+
+    assert topn > 0
+    words_m1 = get_neighbors_set(word, m1, topn)
+    words_m2 = get_neighbors_set(word, m2, topn)
+    intersection = words_m1.intersection(words_m2)
+    return 1 - (len(intersection) / topn)
