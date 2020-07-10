@@ -20,6 +20,50 @@ def c_measure(word, slices):
     return collect_c
 
 
+def lncs2_setted(word, m1, m2, topn):
+    """
+    https://www.aclweb.org/anthology/D16-1229/
+
+    :param word:
+    :param m1:
+    :param m2:
+    :param topn:
+    :return:
+    """
+
+    words_m1 = list(get_neighbors_set(word, m1, topn))
+    words_m2 = list(get_neighbors_set(word, m2, topn))
+
+    all_words = set(words_m1 + words_m2)
+
+    vec_1 = []
+    vec_2 = []
+    avg = 0
+    mean = False
+
+    for inner_word in all_words:
+        if inner_word in m1.wv.vocab:
+            vec_1.append(1 - cosine(m1.wv[word], m1.wv[inner_word]))
+        else:
+            if not mean:
+                avg = np.average(m1[m1.wv.vocab], axis=0)
+                mean = True
+            vec_1.append(1 - cosine(m1.wv[word], avg))
+
+    mean = False
+
+    for inner_word in all_words:
+        if inner_word in m2.wv.vocab:
+            vec_2.append(1 - cosine(m2.wv[word], m2.wv[inner_word]))
+        else:
+            if not mean:
+                avg = np.average(m2[m2.wv.vocab], axis=0)
+                mean = True
+            vec_2.append(1 - cosine(m2.wv[word], avg))
+
+    return 1 - cosine(vec_1, vec_2)
+
+
 def lncs2(word, m1, m2, topn):
     """
     https://www.aclweb.org/anthology/D16-1229/
