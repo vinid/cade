@@ -50,6 +50,7 @@ def lncs2_setted(word, m1, m2, topn):
                 mean = True
             vec_1.append(1 - cosine(m1.wv[word], avg))
 
+    avg = 0
     mean = False
 
     for inner_word in all_words:
@@ -80,24 +81,45 @@ def lncs2(word, m1, m2, topn):
 
     vec_1 = []
     vec_2 = []
+    avg = 0
+    mean = False
 
+    # Cosine similarity between "word" and every word in its m1-neighbour
+    # within the m1 space
     for wtest in words_m1:
-        vec_1.append(get_mean_if_missing(word, wtest, m1, m1))
+        vec_1.append(1 - cosine(m1.wv[word], m1.wv[wtest]))
 
+    # Cosine similarity between "word" and every word in its m2-neighbour
+    # within the m1 space
     for wtest in words_m2:
-        param = False
         if wtest not in m1.wv.vocab:
-            param = True
-        vec_1.append(get_mean_if_missing(word, wtest, m1, m1, param))
+            if not mean:
+                # Represent OOV words in m1 space empirically with its mean
+                avg = np.average(m1[m1.wv.vocab], axis=0)
+                mean = True
+            vec_1.append(1 - cosine(m1[word], avg))
+        else:
+            vec_1.append(1 - cosine(m1.wv[word], m1.wv[wtest]))
 
+    avg = 0
+    mean = False
+
+    # Cosine similarity between "word" and every word in its m1-neighbour
+    # within the m2 space
     for wtest in words_m1:
-        param = False
         if wtest not in m2.wv.vocab:
-            param = True
-        vec_2.append(get_mean_if_missing(word, wtest, m2, m2, param))
+            if not mean:
+                # Represent OOV words in m1 space empirically with its mean
+                avg = np.average(m2[m2.wv.vocab], axis=0)
+                mean = True
+            vec_2.append(1 - cosine(m2[word], avg))
+        else:
+            vec_2.append(1 - cosine(m2.wv[word], m2.wv[wtest]))
 
+    # Cosine similarity between "word" and every word in its m2-neighbour
+    # within the m2 space
     for wtest in words_m2:
-        vec_2.append(get_mean_if_missing(word, wtest, m2, m2))
+        vec_2.append(1 - cosine(m2.wv[word], m2.wv[wtest]))
 
     return 1 - cosine(vec_1, vec_2)
 
