@@ -154,6 +154,7 @@ People
 + `Federico Bianchi <http://twitter.com/fb_vinid>`_ - Bocconi University -  (f.bianchi@unibocconi.it)
 + Valerio Di Carlo -  BUP Solutions
 + Paolo Nicoli -  University of Milano-Bicocca
++ Federico Belotti - University of Milano-Bicocca
 + Matteo Palmonari - University of Milano-Bicocca - (matteo.palmonari@unimib.it)
 
 Credits
