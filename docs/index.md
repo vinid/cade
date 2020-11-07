@@ -17,7 +17,7 @@ You can find more about CADE on the [github page](https://github.com/vinid/cade)
 + [1] Di Carlo, V., Bianchi, F., & Palmonari, M. (2019). [**Training Temporal Word Embeddings with a Compass**](https://doi.org/10.1609/aaai.v33i01.33016326). Proceedings of the AAAI Conference on Artificial Intelligence, 33(01), 6326-6334. https://doi.org/10.1609/aaai.v33i01.33016326
 + [2] Bianchi, F., Di Carlo, V., Nicoli, P., & Palmonari, M. (2020). **[Compass-aligned Distributional Embeddings for Studying Semantic Differences across Corpora](https://arxiv.org/abs/2004.06519)**. Arxiv. https://arxiv.org/abs/2004.06519
 + [3] Belotti, F., Bianchi, F., & Palmonari, M. (2020). **UNIMIB @ DIACR-Ita: Aligning Distributional Embeddings with a Compass for Semantic Change Detection in the Italian Language**. Proceedings of Clic-it (to appear).
-+ [4] Cassani, G., Bianchi, F., Marelli, M., (2020). **[Words that shift are learned later: A study on the relation between diachronic semantic change and age of acquisition**](https://amlap2020.github.io/a/25.pdf). AMLap.; [video](https://osf.io/qfcb2/)
++ [4] Cassani, G., Bianchi, F., Marelli, M., (2020). [**Words that shift are learned later: A study on the relation between diachronic semantic change and age of acquisition**](https://amlap2020.github.io/a/25.pdf). AMLap.; [video](https://osf.io/qfcb2/)
 
 ## Other works using CADE
 
