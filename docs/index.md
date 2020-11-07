@@ -6,7 +6,7 @@ TWEC was originally implemented by Valerio Di Carlo during his masters' thesis a
 Eventually, we changed the name due to the more general nature of the alignment provided by the model.
 
 CADE can and has been used for several different tasks: from general temporal vector space alignment [1]  and a more general comparison of language
-variation [2], to tasks like semantic change detection [3,5] and narrative understanding [4].
+variation [2], to tasks like semantic change detection [3,6] and narrative understanding [5].
 
 ![Compass Aligned Distributional Embeddings](https://raw.githubusercontent.com/vinid/cade/master/img/CADE.png)
 
@@ -21,5 +21,5 @@ You can find more about CADE on the [github page](https://github.com/vinid/cade)
 
 ## Other works using CADE
 
-+ [4] **Temporal Narrative Understanding** Volpetti, C., Vani, K., & Antonucci, A. (2020, February). [**Temporal Word Embeddings for Narrative Understanding**](https://dl.acm.org/doi/pdf/10.1145/3383972.3383988). In Proceedings of the 2020 12th International Conference on Machine Learning and Computing (pp. 68-72).
-+ [5] **Showing CADE effectiveness for semantic change detection** Alkhalifa R., and Tsakalidis A., Zubiaga A., & Liakata, M. (2020). [**QMUL-SDS @ DIACR-ITA2020: Evaluating Unsupervised Diachronic Lexical Semantics Classification in Italian**](https://arxiv.org/abs/2011.02935).  Proceedings of Clic-it (to appear).
++ [5] **Temporal Narrative Understanding** Volpetti, C., Vani, K., & Antonucci, A. (2020, February). [**Temporal Word Embeddings for Narrative Understanding**](https://dl.acm.org/doi/pdf/10.1145/3383972.3383988). In Proceedings of the 2020 12th International Conference on Machine Learning and Computing (pp. 68-72).
++ [6] **Showing CADE effectiveness for semantic change detection** Alkhalifa R., and Tsakalidis A., Zubiaga A., & Liakata, M. (2020). [**QMUL-SDS @ DIACR-ITA2020: Evaluating Unsupervised Diachronic Lexical Semantics Classification in Italian**](https://arxiv.org/abs/2011.02935).  Proceedings of Clic-it (to appear).
