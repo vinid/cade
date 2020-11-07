@@ -1,1 +1,7 @@
 theme: jekyll-theme-cayman
+
+title: "Compass Aligned Distributional Embeddings"
+description: Comparing word vectors in different corpora requires vector space alignment. With CADE, that is super easy!.
+
+show_downloads: "true"
+
