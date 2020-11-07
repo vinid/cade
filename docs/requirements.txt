@@ -1,6 +1,0 @@
-pyyaml
-sphinx-gallery
-sphinxcontrib-napoleon
-sphinxcontrib-bibtex
-sphinxcontrib-inlinesyntaxhighlight
-m2r
