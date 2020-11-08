@@ -24,3 +24,24 @@ You can find more about CADE on the [github page](https://github.com/vinid/cade)
 
 + [5] **Temporal Narrative Understanding** Volpetti, C., Vani, K., & Antonucci, A. (2020, February). [**Temporal Word Embeddings for Narrative Understanding**](https://dl.acm.org/doi/pdf/10.1145/3383972.3383988). In Proceedings of the 2020 12th International Conference on Machine Learning and Computing (pp. 68-72).
 + [6] **Showing CADE effectiveness for semantic change detection** Alkhalifa R., and Tsakalidis A., Zubiaga A., & Liakata, M. (2020). [**QMUL-SDS @ DIACR-ITA2020: Evaluating Unsupervised Diachronic Lexical Semantics Classification in Italian**](https://arxiv.org/abs/2011.02935).  Proceedings of Clic-it (to appear).
+
+# Main References
+
+If you use CADE in a research paper, please cite the two following works:
+
+<pre>
+@inproceedings{di2019training,
+  title={Training temporal word embeddings with a compass},
+  author={Di Carlo, Valerio and Bianchi, Federico and Palmonari, Matteo},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={33},
+  pages={6326--6334},
+  year={2019}
+}
+
+@article{bianchi2020compass,
+  title={Compass-aligned Distributional Embeddings for Studying Semantic Differences across Corpora},
+  author={Bianchi, Federico and Di Carlo, Valerio and Nicoli, Paolo and Palmonari, Matteo},
+  journal={arXiv preprint arXiv:2004.06519},
+  year={2020}
+}</pre>
