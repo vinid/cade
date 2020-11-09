@@ -37,6 +37,19 @@ This work is based on the following papers: `AAAI
 + Bianchi, F., Di Carlo, V., Nicoli, P., & Palmonari, M. (2020). **Compass-aligned Distributional Embeddings for Studying Semantic Differences across Corpora**. Arxiv. https://arxiv.org/abs/2004.06519
 + Di Carlo, V., Bianchi, F., & Palmonari, M. (2019). **Training Temporal Word Embeddings with a Compass**. Proceedings of the AAAI Conference on Artificial Intelligence, 33(01), 6326-6334. https://doi.org/10.1609/aaai.v33i01.33016326
 
+Jump start Tutorial
+-------------------
+
+.. |colab1| image:: https://colab.research.google.com/assets/colab-badge.svg
+    :target: https://colab.research.google.com/drive/1Ou6ydXLWkKUFBxNA7vfHNGOZlA3gcovn?usp=sharing
+    :alt: Open In Colab
+
+
++----------------------------------------------------------------+--------------------+
+| Name                                                           | Link               |
++================================================================+====================+
+| Use CADE to align the same text twice                          | |colab1|           |
++----------------------------------------------------------------+--------------------+
 
 Abstract
 --------
@@ -93,6 +106,9 @@ Guide
 * **What do you need**: Different corpora you want to compare (i.e., text from 1991, text from 1992 / text from the New York Times, text from The Guardian ... etc...) and the concatenation of those text slices (the compass).
 
 * **The compass** should be the concatenation of the slice you want to align. In the next code section you will see that we are going to use arxiv papers text from two different years. The "compass.txt" file contains the concatenation of both slices.
+
+
+
 
 How To Use
 ----------
