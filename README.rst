@@ -9,6 +9,8 @@ Compass-aligned Distributional Embeddings
 .. image:: https://travis-ci.com/vinid/cade.svg
         :target: https://travis-ci.com/vinid/cade
 
+.. image:: https://github.com/vinid/cade/workflows/Python%20package/badge.svg
+        :target: https://github.com/vinid/cade/actions
 
 This package contains Python code to generate compass aligned distributional embeddings (CADE).
 Comparing word vectors in different corpora requires alignment.
