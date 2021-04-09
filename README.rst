@@ -9,7 +9,8 @@ Compass-aligned Distributional Embeddings
 .. image:: https://github.com/vinid/cade/workflows/Python%20package/badge.svg
         :target: https://github.com/vinid/cade/actions
 
-This package contains Python code to generate compass aligned distributional embeddings (CADE).
+This package contains Python code to generate compass aligned distributional embeddings (CADE). 
+Also known as **Temporal Word Embeddings with a Compass** (**TWEC**).
 Comparing word vectors in different corpora requires alignment.
 We propose a method to aligned distributional representation based on word2vec.
 This method is efficient and it is based on a simple heuristic: we train a general word embedding, **the compass**
