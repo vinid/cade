@@ -15,7 +15,7 @@ class CADE:
     Handles alignment between multiple slices of text
     """
     def __init__(self, size=100, sg=0, siter=5, diter=5, ns=10, window=5, alpha=0.025,
-                            min_count=5, workers=2, test = "test", opath="model", init_mode="hidden"):
+                            min_count=5, workers=2, test = "test", opath="model", init_mode="hidden", hs=0):
         """
 
         :param size: Number of dimensions. Default is 100.
@@ -33,6 +33,7 @@ class CADE:
                             'if \"both\", initilize also the word embeddings;'
                             'if \"copy\", models are initiliazed as a copy of the context model
                             (same vocabulary)
+        :param hs: adds hierarchical softmax {1, 0}
         """
         self.size = size
         self.sg =sg
@@ -41,6 +42,7 @@ class CADE:
         self.static_iter = siter
         self.dynamic_iter =diter
         self.negative = ns
+        self.hs = hs
         self.window = window
         self.static_alpha = alpha
         self.dynamic_alpha = alpha
@@ -99,7 +101,7 @@ class CADE:
         model = None
         if self.compass == None or self.init_mode != "copy":
             model = gensim.models.word2vec.Word2Vec(sg=self.sg, size=self.size, alpha=self.static_alpha, iter=self.static_iter,
-                             negative=self.negative,
+                             negative=self.negative, hs=self.hs,
                              window=self.window, min_count=self.min_count, workers=self.workers)
             model.build_vocab(sentences, trim_rule=self.internal_trimming_rule if self.compass != None else None)
         if self.compass != None:
