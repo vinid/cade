@@ -3,6 +3,8 @@ Compass-aligned Distributional Embeddings
 =========================================
 
 
+* **News May-2021**: Thanks to wabyking (https://github.com/wabyking) we found that a gensim compilation problem was affecting the installation of our tool. The compass was unstable during the second part of the training. We updated our edited gensim package with the compilation so that this problem does not occur. There might be a small variation in the results you get with the new stable version. Our AAAI results were computed on a compiled version of the software and were not affected by this issue. You can find the issue on TWEC GitHub page: https://github.com/valdeica/twec
+
 .. image:: https://img.shields.io/pypi/v/cade.svg
         :target: https://pypi.python.org/pypi/cade
 
